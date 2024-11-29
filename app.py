@@ -103,23 +103,10 @@ if uploaded_image:
 
             # Map the detected labels to actual class names
             detected_objects = [results.names[int(label)] for label in results.xywh[0][:, -1].tolist()]
-            confidence_scores = results.xywh[0][:, 4].tolist()  # Extract confidence scores (probabilities)
 
-            # Create a description from the detected objects with confidence scores
-            description = "I see the following objects in the image: "
-            for obj, score in zip(detected_objects, confidence_scores):
-                description += f"{obj} ({score*100:.2f}% confidence), "
-
-            # Remove the last comma and space
-            description = description.rstrip(", ")
-
-            # Show the description
+            # Create a description from the detected objects
+            description = "I see the following objects in the image: " + ", ".join(detected_objects)
             st.write(description)
-
-            # Annotate the image with bounding boxes
-            annotated_image = np.array(results.render()[0])  # Rendered image with bounding boxes
-            display_image_with_caption(annotated_image, "Detected Objects with Bounding Boxes")
-
         except Exception as e:
             st.error(f"An error occurred during object detection: {e}")
 
