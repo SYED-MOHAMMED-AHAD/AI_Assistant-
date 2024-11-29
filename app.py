@@ -1,7 +1,7 @@
 import streamlit as st
 import google.generativeai as ai
 from PIL import Image
-import easyocr
+import easyocr  # Replacing pytesseract with easyocr
 from gtts import gTTS
 import numpy as np
 import torch
@@ -66,26 +66,7 @@ if uploaded_image:
     if "scene_understanding" in selected_features:
         st.subheader("Scene Understanding")
         try:
-            # Extract objects using YOLOv5 and text using EasyOCR
-            results = model(np.array(image))
-            detected_objects = [results.names[int(label)] for label in results.xywh[0][:, -1].tolist()]
-            confidence_scores = results.xywh[0][:, 4].tolist()  # Extract confidence scores (probabilities)
-            
-            # Create a description of detected objects
-            objects_description = "I see the following objects in the image: "
-            for obj, score in zip(detected_objects, confidence_scores):
-                objects_description += f"{obj} ({score*100:.2f}% confidence), "
-            objects_description = objects_description.rstrip(", ")
-
-            # Extract text using EasyOCR
-            ocr_result = reader.readtext(np.array(image))
-            extracted_text = " ".join([text[1] for text in ocr_result])
-
-            # Combine both object and text description for input to AI
-            scene_input = f"Objects detected: {objects_description}. Extracted text: {extracted_text}."
-            description_prompt = f"Describe this scene for a visually impaired individual. Information: {scene_input}"
-
-            # Generate scene description using Generative AI
+            description_prompt = "Describe this scene in detail for a visually impaired individual."
             response = model_scene.generate_content(description_prompt)
             if response and hasattr(response, 'text') and response.text:
                 st.write("**Scene Description:**", response.text)
@@ -122,22 +103,9 @@ if uploaded_image:
 
             # Map the detected labels to actual class names
             detected_objects = [results.names[int(label)] for label in results.xywh[0][:, -1].tolist()]
-            confidence_scores = results.xywh[0][:, 4].tolist()  # Extract confidence scores (probabilities)
 
-            # Create a description from the detected objects with confidence scores
-            description = "I see the following objects in the image: "
-            for obj, score in zip(detected_objects, confidence_scores):
-                description += f"{obj} ({score*100:.2f}% confidence), "
-
-            # Remove the last comma and space
-            description = description.rstrip(", ")
-
-            # Show the description
+            # Create a description from the detected objects
+            description = "I see the following objects in the image: " + ", ".join(detected_objects)
             st.write(description)
-
-            # Annotate the image with bounding boxes
-            annotated_image = np.array(results.render()[0])  # Rendered image with bounding boxes
-            display_image_with_caption(annotated_image, "Detected Objects with Bounding Boxes")
-
         except Exception as e:
             st.error(f"An error occurred during object detection: {e}")
