@@ -16,6 +16,7 @@ api_key = st.secrets["AI_API_KEY"]
 
 # Configure API key for Google Generative AI
 ai.configure(api_key=api_key)  
+st.write("Available Secrets:", st.secrets.keys())
 
 # Initialize the object detection model
 model = torch.hub.load('ultralytics/yolov5', 'yolov5s')  # Load YOLOv5 model for object detection
