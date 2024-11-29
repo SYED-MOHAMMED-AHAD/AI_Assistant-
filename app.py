@@ -100,12 +100,10 @@ if uploaded_image:
         try:
             # Perform object detection using YOLOv5 model
             results = model(np.array(image))
-
-            # Map the detected labels to actual class names
-            detected_objects = [results.names[int(label)] for label in results.xywh[0][:, -1].tolist()]
-
-            # Create a description from the detected objects
-            description = "I see the following objects in the image: " + ", ".join(detected_objects)
-            st.write(description)
+            annotated_image = np.array(results.render()[0])  # Annotate image with bounding boxes
+            st.image(annotated_image, caption="Detected Objects", use_container_width=True)
         except Exception as e:
             st.error(f"An error occurred during object detection: {e}")
+
+
+
