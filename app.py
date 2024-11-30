@@ -11,6 +11,7 @@ import pyttsx3
 import easyocr
 reader = easyocr.Reader(['en'])  # Load English language model
 
+
 import platform
 
 if platform.system() == "Windows":
@@ -24,11 +25,12 @@ else:
 
 # Configure API key for Google Generative AI from environment variables (for security)
 ai.configure(api_key='AIzaSyA88kc5SzNdPLdTlsdIN2xs8CBz_HLMdy8')  
+st.set_page_config(page_title="Visual Assistance AI 👓🤖", layout="wide")
 
-import streamlit as st
+
 
 # Set the page layout to wide for more space
-st.set_page_config(page_title="Visual Assistance AI 👓🤖", layout="wide")
+
 
 # Title of the app
 # st.title("AI-Powered Visual Assistance for the Visually Impaired 👓🤖")
