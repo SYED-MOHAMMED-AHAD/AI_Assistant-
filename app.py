@@ -31,7 +31,7 @@ import streamlit as st
 st.set_page_config(page_title="Visual Assistance AI 👓🤖", layout="wide")
 
 # Title of the app
-st.title("AI-Powered Visual Assistance for the Visually Impaired 👓🤖")
+# st.title("AI-Powered Visual Assistance for the Visually Impaired 👓🤖")
 
 # Create two columns
 col1, col2 = st.columns([1, 3])  # 1 for left section, 3 for right section
