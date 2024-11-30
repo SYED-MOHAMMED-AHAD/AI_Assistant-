@@ -25,6 +25,73 @@ else:
 # Configure API key for Google Generative AI from environment variables (for security)
 ai.configure(api_key='AIzaSyA88kc5SzNdPLdTlsdIN2xs8CBz_HLMdy8')  
 
+import streamlit as st
+
+# Set the page layout to wide for more space
+st.set_page_config(page_title="Visual Assistance AI 👓🤖", layout="wide")
+
+# Title of the app
+st.title("AI-Powered Visual Assistance for the Visually Impaired 👓🤖")
+
+# Create two columns
+col1, col2 = st.columns([1, 3])  # 1 for left section, 3 for right section
+
+# Left Column - About Me and Project
+with col1:
+    st.header("About Me 👤")
+    st.write("""
+    I am a passionate developer and AI enthusiast, working on projects that combine technology 
+    and accessibility. This project is designed to empower visually impaired individuals using 
+    cutting-edge AI tools, such as object detection, scene understanding, and text-to-speech 
+    conversion, to enhance their daily lives.
+    """)
+
+    st.header("About This Project 💡")
+    st.write("""
+    The Visual Assistance AI project aims to provide visually impaired individuals with real-time 
+    information about their surroundings. Using object detection, the system identifies objects in 
+    the environment and provides a description via text or speech. 
+    Features include:
+    - **Real-Time Scene Understanding**
+    - **Object and Obstacle Detection**
+    - **Text-to-Speech Conversion**
+    
+    By leveraging AI technologies like YOLOv5 for object detection and Google Generative AI for scene 
+    understanding, the project aims to bridge the gap in accessibility and provide meaningful support.
+    """)
+
+# Right Column - Main App Features
+with col2:
+    st.header("Visual Assistance AI in Action 🧠⚡")
+    st.write("""
+    Upload an image to get real-time assistance. The AI model will detect objects, describe the scene, 
+    and even convert any text in the image to speech.
+    """)
+
+    # File uploader for the image
+    uploaded_image = st.file_uploader("Upload an Image", type=['jpg', 'jpeg', 'png'])
+
+    # Feature selection checkboxes
+    st.subheader("Select Features:")
+    features = {
+        "scene_understanding": "Real-Time Scene Understanding",
+        "text_to_speech": "Text-to-Speech Conversion",
+        "object_detection": "Object and Obstacle Detection"
+    }
+    
+    selected_features = []
+    for key, value in features.items():
+        if st.checkbox(value):
+            selected_features.append(key)
+
+    if uploaded_image:
+        image = Image.open(uploaded_image)
+        st.image(uploaded_image, caption="Uploaded Image", use_container_width=True)
+
+        # Add your object detection and other features logic here
+        # For instance, perform object detection, scene understanding, or text-to-speech conversion
+
+
 
 # Streamlit app setup
 st.set_page_config(page_title="Visual Assistance AI 🤖", layout="centered")
