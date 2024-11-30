@@ -45,9 +45,9 @@ col1, col2 = st.columns([1, 3])  # 1 for left section, 3 for right section
 
 # Left Column - About Me and Project
 with col1:
-    st.header("About Me 👤")
+    st.header("MOHD AHAD 👤")
     st.write("""
-    I am a passionate developer and AI enthusiast, working on projects that combine technology 
+    I am a passionate Data scientist and AI enthusiast, working on projects that combine technology 
     and accessibility. This project is designed to empower visually impaired individuals using 
     cutting-edge AI tools, such as object detection, scene understanding, and text-to-speech 
     conversion, to enhance their daily lives.
