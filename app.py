@@ -35,7 +35,8 @@ st.header("Empowering Visually Impaired Individuals 🧠⚡")
 model = torch.hub.load('ultralytics/yolov5', 'yolov5s')  # Load YOLOv5 model for object detection
 
 # Define the system prompt for scene understanding
-sys_prompt_scene = """You are an advanced AI specializing in scene understanding. Based on the content of the provided text, describe the scene in detail to help visually impaired individuals comprehend their surroundings."""
+sys_prompt_scene = """You are an advanced AI specializing in scene understanding. Based on the content of the provided text, 
+describe the scene in detail to help visually impaired individuals comprehend their surroundings."""
 
 # Initialize the Generative AI model for scene understanding
 model_scene = ai.GenerativeModel(model_name="gemini-1.5-flash", system_instruction=sys_prompt_scene)
