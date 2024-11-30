@@ -27,9 +27,9 @@ ai.configure(api_key='AIzaSyA88kc5SzNdPLdTlsdIN2xs8CBz_HLMdy8')
 
 
 # Streamlit app setup
-st.set_page_config(page_title="Visual Assistance AI 👓🤖", layout="centered")
-st.title("Visual Assistance AI 👓🤖")
-st.header("Empowering Visually Impaired Individuals 🧠⚡")
+st.set_page_config(page_title="Visual Assistance AI 🤖", layout="centered")
+st.title("Visual Assistance AI 🤖")
+st.header("Intelligent Vision Assistance for All 🌐")
 
 # Initialize the object detection model (YOLOv5)
 model = torch.hub.load('ultralytics/yolov5', 'yolov5s')  # Load YOLOv5 model for object detection
