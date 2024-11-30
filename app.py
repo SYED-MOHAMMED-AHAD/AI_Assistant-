@@ -38,7 +38,7 @@ describe the scene in detail to help visually impaired individuals comprehend th
 model_scene = ai.GenerativeModel(model_name="gemini-1.5-flash", system_instruction=sys_prompt_scene)
 
 # Title of the app
-st.title("AI-Powered Visual Assistance for the Visually Impaired ")
+st.title("AI-Powered Intelligent Vision Assistant ")
 
 # Create two columns
 col1, col2 = st.columns([1, 3])  # 1 for left section, 3 for right section
