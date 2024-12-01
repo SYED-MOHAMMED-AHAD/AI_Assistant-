@@ -93,7 +93,7 @@ with col2:
 
     # Function to display an image with a caption
     def display_image_with_caption(image, caption):
-        st.image(image, caption=caption, use_column_width=True)
+        st.image(image, caption=caption, use_container_width =True)
 
     # Process the uploaded image
     if uploaded_image:
